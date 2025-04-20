@@ -1,4 +1,4 @@
-name: deploy guides
+name: deploy blog
 
 on:
   repository_dispatch:
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    name: build
+    name: build and deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -30,12 +30,6 @@ jobs:
           npm ci
           npm run build
 
-  deploy:
-    name: deploy
-    needs: [build]
-    runs-on: ubuntu-latest
-
-    steps:
       - name: upload artifacts
         uses: actions/upload-artifact@v4
         with:
